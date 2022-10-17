@@ -18,6 +18,7 @@ jobs:
         id: beamable_updater
         uses: ./ # Uses an action in the root directory
         with:
+          dry-run: true
           project-path: "projectFolder"
       - name: Print the versions
         run: |
