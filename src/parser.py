@@ -68,7 +68,7 @@ print("Is dry run: " + str(DRY_RUN))
 print("Perform update: " + str(perform_update))
 
 # set output
-env_file = os.getenv('GITHUB_ENV')
+env_file = os.getenv('GITHUB_OUTPUT')
 
 with open(env_file, "a") as myfile:
     myfile.write(f"local_version={local_version}\n")
