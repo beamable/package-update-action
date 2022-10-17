@@ -68,6 +68,9 @@ print("Is dry run: " + str(DRY_RUN))
 print("Perform update: " + str(perform_update))
 
 # set output
-print(f"::set-output name=local_version::{local_version}")
-print(f"::set-output name=remote_version::{latest_version}")
-print(f"::set-output name=did_perform_update::{str(perform_update)}")
+env_file = os.getenv('GITHUB_ENV')
+
+with open(env_file, "a") as myfile:
+    myfile.write(f"local_version={local_version}\n")
+    myfile.write(f"remote_version={latest_version}\n")
+    myfile.write(f"did_perform_update={str(perform_update)}\n")
