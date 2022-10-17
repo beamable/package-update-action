@@ -64,9 +64,9 @@ if perform_update:
 
 print("Local: " + local_version)
 print("Remote: " + latest_version)
-print("Perform update " + perform_update)
+print("Perform update " + str(perform_update))
 
 # set output
 print(f"::set-output name=local_version::{local_version}")
 print(f"::set-output name=remote_version::{latest_version}")
-print(f"::set-output name=did_perform_update::{perform_update}")
+print(f"::set-output name=did_perform_update::{str(perform_update)}")

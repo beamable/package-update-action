@@ -13,8 +13,8 @@ jobs:
         run: |
           mkdir projectFolder
           mkdir projectFolder/Packages
-          wget -O projectFolder/Packages/manifest.json https://gist.githubusercontent.com/Leinnan/76313cc3ab0a3b10d846225a50ee04ec/raw/ea4b9f2c2557244431a1d7183fc5db8f416da978/gistfile1.txt
-      - name: Fetch num squared
+          wget -O projectFolder/Packages/manifest.json https://gist.githubusercontent.com/Leinnan/76313cc3ab0a3b10d846225a50ee04ec/raw/21afc45872a656423a7077dbd9b0e61d7c560663/gistfile1.txt
+      - name: Update Beamable version
         id: beamable_updater
         uses: ./ # Uses an action in the root directory
         with:
@@ -22,6 +22,6 @@ jobs:
           project-path: "projectFolder"
       - name: Print the versions
         run: |
-          echo "Local version is ${{ steps.beamable_updater.outputs.local_version }}"
+          echo "Local version was ${{ steps.beamable_updater.outputs.local_version }}"
           echo "Remote version is ${{ steps.beamable_updater.outputs.remote_version }}"
           echo "Did perform the update: ${{ steps.beamable_updater.outputs.did_perform_update }}"
