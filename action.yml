@@ -37,5 +37,5 @@ runs:
       shell: bash
     - name: Update Beamable version
       id: beamable-update
-      run: python src/parser.py
+      run: python ${{ github.action_path }}/src/parser.py
       shell: bash
