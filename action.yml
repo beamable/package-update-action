@@ -1,0 +1,41 @@
+# action.yaml
+name: 'Beamable Update Action'
+description: 'A Github Action that can update Beamable version in Unity project'
+inputs:
+  dry-run:
+    description: 'Check local and remote version without upgrading'
+    required: true
+    default: false
+  project-path:
+    description: 'Project directory'
+    required: true
+    default: "."
+outputs:
+  local_version:
+    description: 'Local version'
+    value: ${{ steps.beamable-update.outputs.local_version }}
+  remote_version:
+    description: 'Remote version'
+    value: ${{ steps.beamable-update.outputs.remote_version }}
+  did_perform_update:
+    description: 'Did perform the update'
+    value: ${{ steps.beamable-update.outputs.did_perform_update }}
+runs:
+  using: 'composite'
+  steps:
+    - name: Install Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    - name: Install Dependencies
+      run: pip install -r requirements.txt
+      shell: bash
+    - name: Pass Inputs to Shell
+      run: |
+          echo "DRY_RUN=${{ inputs.dry-run }}" >> $GITHUB_ENV
+          echo "PROJECT_PATH=${{ inputs.project-path }}" >> $GITHUB_ENV
+      shell: bash
+    - name: Update Beamable version
+      id: beamable-update
+      run: python src/parser.py
+      shell: bash
