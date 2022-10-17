@@ -58,12 +58,13 @@ def replace_local_version(new_version):
 
 local_version = get_local_version()
 latest_version = get_latest_version()
-perform_update = not DRY_RUN and local_version != latest_version
+perform_update = DRY_RUN == False and local_version != latest_version
 if perform_update:
     replace_local_version(latest_version)
 
 print("Local: " + local_version)
 print("Remote: " + latest_version)
+print("Is dry run: " + str(DRY_RUN))
 print("Perform update: " + str(perform_update))
 
 # set output
