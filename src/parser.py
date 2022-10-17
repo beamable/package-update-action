@@ -10,7 +10,7 @@ VERSION_REGEX = "[0-9][0-9.]*[0-9]"
 DRY_RUN = os.environ.get("DRY_RUN")
 if DRY_RUN:
     try:
-        DRY_RUN = bool(DRY_RUN)
+        DRY_RUN = bool(str(DRY_RUN).lower() in ("yes", "true", "t", "1"))
     except Exception:
         exit('ERROR: the DRY_RUN provided ("{}") is not an boolean'.format(DRY_RUN))
 else:
