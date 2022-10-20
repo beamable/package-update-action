@@ -54,6 +54,7 @@ def replace_local_version(new_version):
         dataJson["dependencies"]["com.beamable.server"] = new_version
     with open(path, "w") as f:
         f.write(json.dumps(dataJson, indent=2))
+        f.write("\n")
 
 
 local_version = get_local_version()
